@@ -13,4 +13,7 @@ import com.hcl.spendanalyser.transactionhistoryservice.model.TransactionHistory;
 public interface TransactionHistoryRepository extends MongoRepository<TransactionHistory,ObjectId>{
 	@Query("{ 'customerId' : ?0 }")
 	List<TransactionHistory> findAllByCustomerId(String customerId);
+	
+	@Query("{'customerId' : ?2, $expr:{$and:[{$eq:[{$year:'$tranDate'}, ?0]}, {$eq:[{$month:'$tranDate'}, ?1]}]}}")
+    List<TransactionHistory> findByTranDateMatches(int year,int month,String customerId);
 }

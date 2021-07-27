@@ -20,5 +20,11 @@ public class TransactionHistoryController {
 		return new ResponseEntity<Object>(transactionHistoryService.getAllTransactions(customerId),
 				HttpStatus.ACCEPTED);
 	}
+	
+	@GetMapping("/transactionaggregated/{customerId}/{noOfMonths}")
+	public ResponseEntity<Object> getAllTransactionsGrouped(@PathVariable String customerId,@PathVariable int noOfMonths) {
+		return new ResponseEntity<Object>(transactionHistoryService.getTransactionsByMonth(customerId,noOfMonths),
+				HttpStatus.ACCEPTED);
+	}
 
 }
