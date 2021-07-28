@@ -7,6 +7,13 @@ public class TransactionsGrouped {
 	private String monthYear;
 	private List<TransactionHistory> tranList;
 	
+	public TransactionsGrouped() {
+	}
+	
+	public TransactionsGrouped(String monthYear, List<TransactionHistory> tranList) {
+		this.monthYear = monthYear;
+		this.tranList = tranList;
+	}
 	public String getMonthYear() {
 		return monthYear;
 	}

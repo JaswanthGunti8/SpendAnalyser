@@ -25,7 +25,7 @@ public class TransactionHistoryService {
 		List<TransactionsGrouped> tranList = new ArrayList<>();
 
 		LocalDate currentDate = LocalDate.now();
-		for (int i = 0; i <= noOfMonths; i++) {
+		for (int i = 0; i < noOfMonths; i++) {
 			LocalDate lastMonth = currentDate.minusMonths(i);
 
 			int year = lastMonth.getYear();

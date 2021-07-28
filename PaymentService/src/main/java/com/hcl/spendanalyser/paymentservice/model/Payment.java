@@ -6,6 +6,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Pattern.Flag;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -32,6 +33,24 @@ public class Payment {
 	@NotNull
 	private LocalDateTime tranDate;
 	
+	
+	
+	public Payment() {
+	}
+	
+	public Payment(@NotBlank(message = "Customer Id cannot be blank") String customerId,
+			@NotBlank(message = "Transaction Description cannot be blank") String tranDesc,
+			@Min(value = 0, message = "Transaction Amount should be greater than 0") Double amount,
+			@Pattern(regexp = "House|Income Source|Groceries", flags = Flag.CASE_INSENSITIVE, message = "Valid Categories are House, Income Source, Groceries") String category,
+			@Pattern(regexp = "Credit|Debit", flags = Flag.CASE_INSENSITIVE, message = "Payment Type can be credit or debit only") String paymentType,
+			@NotNull LocalDateTime tranDate) {
+		this.customerId = customerId;
+		this.tranDesc = tranDesc;
+		this.amount = amount;
+		this.category = category;
+		this.paymentType = paymentType;
+		this.tranDate = tranDate;
+	}
 	public String getCustomerId() {
 		return customerId;
 	}

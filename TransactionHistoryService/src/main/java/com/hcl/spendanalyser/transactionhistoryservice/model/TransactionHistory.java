@@ -54,5 +54,4 @@ public class TransactionHistory {
 		this.tranDate = tranDate;
 	}
 	
-	
 }
