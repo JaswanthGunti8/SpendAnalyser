@@ -19,17 +19,17 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.hcl.spendanalyser.transactionhistoryservice.model.TransactionHistory;
 import com.hcl.spendanalyser.transactionhistoryservice.model.TransactionsGrouped;
 import com.hcl.spendanalyser.transactionhistoryservice.repository.TransactionHistoryRepository;
-import com.hcl.spendanalyser.transactionhistoryservice.service.TransactionHistoryService;
+import com.hcl.spendanalyser.transactionhistoryservice.service.impl.TransactionHistoryServiceImpl;
 
 @ExtendWith(SpringExtension.class)
-@Import(TransactionHistoryService.class)
+@Import(TransactionHistoryServiceImpl.class)
 public class TransactionHistoryServiceTest {
 	
 	@MockBean
 	private TransactionHistoryRepository transactionRepository;
 	
 	@Autowired
-	TransactionHistoryService transactionHistoryService;
+	TransactionHistoryServiceImpl transactionHistoryService;
 	
 	@Test
 	public void getAllTransactionsTest() {
@@ -43,8 +43,8 @@ public class TransactionHistoryServiceTest {
 	@Test
 	public void getAllTransactionsByMonthTest() {
 		Mockito.when(transactionRepository.findByTranDateMatches(any(Integer.class),any(Integer.class),any(String.class))).thenReturn(new ArrayList<TransactionHistory>());
-		List<TransactionsGrouped> list = new ArrayList<TransactionsGrouped>();
-		list.add(new TransactionsGrouped("2021-07",new ArrayList<TransactionHistory>()));
+		List<TransactionsGrouped> list = new ArrayList<>();
+		list.add(new TransactionsGrouped("2021-07",new ArrayList<>()));
 		
 		assertEquals(list.toString(), transactionHistoryService.getTransactionsByMonth("12456789",1).toString());
 		

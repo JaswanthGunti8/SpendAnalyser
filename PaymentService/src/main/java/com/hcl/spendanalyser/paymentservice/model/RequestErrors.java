@@ -2,7 +2,6 @@ package com.hcl.spendanalyser.paymentservice.model;
 
 import java.util.Map;
 
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
