@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,14 +18,18 @@ import com.hcl.spendanalyser.transactionhistoryservice.service.TransactionHistor
 @Service
 public class TransactionHistoryServiceImpl implements TransactionHistoryService{
 
+	private static final Logger LOGGER=LoggerFactory.getLogger(TransactionHistoryServiceImpl.class);
+	
 	@Autowired
 	TransactionHistoryRepository transactionRepository;
 
 	public List<TransactionHistory> getAllTransactions(String customerId) {
+		LOGGER.info("In Get all Transactions: customer Id: {} ",customerId);
 		return transactionRepository.findAllByCustomerId(customerId);
 	}
 
 	public List<TransactionsGrouped> getTransactionsByMonth(String customerId, int noOfMonths) {
+		LOGGER.info("In Get all Transactions: customer Id: {} and No of months: {}",customerId,noOfMonths);
 		List<TransactionsGrouped> tranList = new ArrayList<>();
 
 		LocalDate currentDate = LocalDate.now();
